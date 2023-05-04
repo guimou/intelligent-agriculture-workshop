@@ -66,16 +66,16 @@ Here's the list of all query params used (they are all optional, but generated l
 
 Example [Dev Mode]:
 
-http://localhost:3000/mad-dev-guides-m6/main/1-introduction.html?USERID=user1&SUBDOMAIN=cluster-8s5ss.sandbox701.opentlc.com&TOMCATIP=150.240.99.53
+http://localhost:3000/intelligent-agriculture-workshop/main/1-introduction.html?USERID=user1&SUBDOMAIN=cluster-8s5ss.sandbox701.opentlc.com&TOMCATIP=150.240.99.53
 
 ## Deploy to OpenShift
 
 [.console-input]
 [source,bash]
 ----
-oc new-app  https://github.com/RedHat-Middleware-Workshops/mad-dev-guides-m6.git --strategy=docker
+oc new-app  https://github.com/RedHat-Middleware-Workshops/intelligent-agriculture-workshop.git --strategy=docker
 
-oc create route edge mad-dev-guides-m6 --service=mad-dev-guides-m6
+oc create route edge intelligent-agriculture-workshop --service=intelligent-agriculture-workshop
 ----
 
 ## Contributing
