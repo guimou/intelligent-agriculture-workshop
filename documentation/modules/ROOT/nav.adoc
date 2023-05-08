@@ -2,5 +2,6 @@
 * xref:2-notebooks.adoc[Working with notebooks]
 * xref:3-model-training.adoc[Training a model]
 * xref:4-model-deployment.adoc[Deploying a model]
-* xref:5-intelligent-application.adoc[Deploying an intelligent application]
-* xref:6-conclusion.adoc[Conclusion]
+* xref:5-path-service.adoc[Path service]
+* xref:6-intelligent-application.adoc[Deploying an intelligent application]
+* xref:7-conclusion.adoc[Conclusion]

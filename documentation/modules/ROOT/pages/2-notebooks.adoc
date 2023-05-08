@@ -1,4 +1,4 @@
-= 2. Working with notebooks - 10 minutes
+= 2. Working with notebooks - SKIPPING for ODSC
 :imagesdir: ../assets/images
 
 == 2.1 Launching a notebook environment
@@ -70,13 +70,13 @@ image::git.png[]
 
 image::git_clone.png[]
 
-* Enter this URL, https://github.com/rh-aiservices-bu/mad_m6_workshop.git, then select `CLONE`:
+* Enter this URL, https://github.com/rh-aiservices-bu/intelligent-agriculture-demo.git, then select `CLONE`:
 
 image::clone_repo.png[]
 
-* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, **mad_m6_workshop**:
+* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, **intelligent-agriculture-demo**:
 
-image::open_mad_workshop.png[]
+image::open_intelligent_agriculture.png[]
 
 We are now ready to use notebooks!
 
@@ -114,7 +114,7 @@ Notebooks are so named because they are just like a physical Notebook. It is exa
 
 Now that we have covered the basics, just give it a try!
 
-In your Jupyter environment, in file explorer on the left side, there is file called `01_sanbdbox.ipynb`. Double-click it to launch the notebook (it will open another tab in the content section of the environment, on the right). Please feel free to experiment, run the different cells, add some more code... You can do what you want - it is your environment, and there is no risk of breaking anything or impacting other users. This environment isolation is also a great advantage brought by Red Hat OpenShift Data Science.
+In your Jupyter environment, in file explorer on the left side, inside the `workshop` folder, there is file called `01_sanbdbox.ipynb`. Double-click it to launch the notebook (it will open another tab in the content section of the environment, on the right). Please feel free to experiment, run the different cells, add some more code... You can do what you want - it is your environment, and there is no risk of breaking anything or impacting other users. This environment isolation is also a great advantage brought by Red Hat OpenShift Data Science.
 
 You can also create a new notebook by selecting `File->New->Notebook` from the menu on the top left, then select a Python 3 kernel. This instructs Jupyter that we want to create a new notebook where the code cells will be run using a Python 3 kernel. We could have different kernels, with different languages or versions that we can run into notebooks, but that is a story for another time.
 

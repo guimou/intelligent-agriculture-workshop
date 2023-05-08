@@ -1,23 +1,5 @@
-= 3. Training a model - 15 minutes
+= 3. Training a model - 10 minutes
 :imagesdir: ../assets/images
-
-In this section, we will explore how data scientists are training models. It will be a very simple example, but it will give you the basics on the workflow.
-
-* If you still have your sandbox notebook opened, please first close it:
-
-image::close_sandbox.png[]
-
-We also need to shut down the Jupyter notebook environment and pod, as for the rest of the workshop we will use a Data Science Project.
-
-* If you still have you OpenShift Data Science dashboard tab opened in your browser, head to it. You can then simply close the JupyterLab tab, and select **Stop notebook server** on the dashboard:
-
-image::stop_notebook_server.png[]
-
-* If you had closed the OpenShift Data Science dashboard, you can access it https://rhods-dashboard-redhat-ods-applications.%SUBDOMAIN%[here^] or you can reopen it from Jupyter by clicking on **File->Hub Control Panel**:
-
-image::hub_panel.png[]
-
-It will reopen a tab with the dashboard, from which you can stop the notebook environment as described before. We are now ready to work in a Data Science Project.
 
 == 3.1. Data Science Project
 
@@ -29,17 +11,15 @@ First, we will need a data science project to organize all our work: model train
 
 image::create_dsp.png[]
 
-* Type the following values in the popup window. It will be the Display name for OpenShift, and the Resource name is automatically sanitized and created for you.
+* Type the following values in the popup window, then click on `Create`.
 
-* *Name*: `%USERID% data science project`
-* *Resource name*: `%USERID%-data-science-project`
-* *Description*: `This is my first try at data science!`
+**IMPORTANT**: Please enter them as described, as it is what will allow us to identify your resources and help you in case of problem (Description can be what you want though).
+
+* *Name*: `%USERID%`
+* *Resource name*: `%USERID%`
+* *Description*: `This will be a great project!`
 
 image::create_dsp_modal.png[]
-
-* Now, if you are curious and have a look at your https://console-openshift-console.%SUBDOMAIN%/k8s/cluster/projects/%USERID%-data-science-project[OpenShift console^], you will see that the project has indeed been created (login may be needed if you never connected to the Console):
-
-image::my_dsp_console.png[]
 
 === 3.1.2. Working with the DSP
 
@@ -50,16 +30,17 @@ In a Data Science Project you have different sections:
 * Data connections are configurations for remote data location. At the moment, only S3-compatible Object Storage is supported. We will use this feature later on to configure the storage for our models.
 * Finally, Model Servers are used to serve models! But let's save that for later.
 
-For now, let's create a new workbench to work with Tensorflow to train models!
+For now, let's create a new workbench for this workshop!
 
 * select **Create workbench**
 
 image::create_workbench.png[]
 
-* Give it a name, select the **Tensorflow** image, with a Deployment size of **Small**, and a Cluster storage space of 1GB, it will be enough:
+* Give it a name, select the **Custom-Optapy** image, set a Deployment size of **Small**, and a Cluster storage space of 1GB, it will be enough:
 
 image::create_workbench_1.png[]
 image::create_workbench_2.png[]
+image::create_workbench_3.png[]
 
 * And of course, select **Create workbench**:
 
@@ -75,15 +56,15 @@ You can use this toggle to easily start/stop this environment later on.
 
 image::workbench_running.png[]
 
-* After authentication and allowing permissions, you are again in your now familiar JupyterLab environment:
+* After authentication with your workshop username and password, and allowing permissions, you are in your familiar JupyterLab environment:
 
 image::workbench_jl.png[]
 
-== 3.2. Model training
+== 3.2. Fetching the project
 
-We are now ready to do some serious work!
+We are now ready to do some serious work! But we need some content to work with...
 
-* Again, go to the Git menu on the left:
+* Go to the Git menu on the left:
 
 image::git.png[]
 
@@ -91,16 +72,23 @@ image::git.png[]
 
 image::git_clone.png[]
 
-* Enter the URL https://github.com/rh-aiservices-bu/mad_m6_workshop.git, then select `CLONE`:
+* Enter the URL https://github.com/rh-aiservices-bu/intelligent-agriculture-demo.git, then select `CLONE`:
 
 image::clone_repo.png[]
 
-* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, **mad_m6_workshop**:
+* It takes a few seconds, after which you can double-click and navigate to the newly-created folder, **intelligent-agriculture-demo**:
 
-image::open_mad_workshop.png[]
+image::open_intelligent_agriculture.png[]
 
-* In the `mad_m6_workshop` folder, open the file `02_model_training_basics`.
 
-* Follow the steps in the notebook, and run each cell as you go. There may be an Error message when running the cell where `pip install` are done, but you can safely ignore it.
+== 3.3. Model training
 
-image::run_cell.png[]
+* In the folder `model/training`, open the file `01_crops-training.ipynb`.
+
+* We won't have the time in this workshop to train the model for real, but take a few minutes to browse the notebook to see how the crop disease recognition model was trained.
+
+* Now, still in the folder `model/training`, open the file `02_convert_to_onnx.ipynb`. It is a simple example showing how to convert a Keras model to the ONNX format, an open standard for machine learning interoperability, which is one we can use with OpenVino and RHODS model serving.
+
+After training and converting this model for real, it would have been saved to a model repository, for example an S3 compatible object store. This is what has been done in advance for you!
+
+Let's go the next section to see how to deploy this model in your project with RHODS.

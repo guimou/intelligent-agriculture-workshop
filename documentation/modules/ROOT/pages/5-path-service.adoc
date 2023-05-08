@@ -1,0 +1,28 @@
+= 5. Finding the optimal path - 10 minutes
+:imagesdir: ../assets/images
+
+After the drone has identified the fields that have to be visited by the tractors, thanks to our model, we need to guide our tractors.
+
+This is another kind of interesting problem: how to find the optimal route visiting multiple point while minimizing the distance? Luckily we have some nice libraries to help us!
+
+== 5.1 Path finding
+
+Let's have a look at our map.
+
+image::map.png[]
+
+As you can see there is a river in the middle with two bridges. And of course our tractors will sometimes have to cross the river. So the distance they will have to make cannot be directly calculated. We need a way to find the shortest path between two points on this map while respecting the constraints...
+
+* In your project in JupyterLab, open the notebook `04_pathfinder.ipynb` and follow the instructions. You will discover a nice library, **extremitypathfinder** that will solve this problem.
+
+image::pathfinder.png[]
+
+== 5.2 Routing optimization
+
+Now that we can properly calculate the real distance between two points on our map, we need a way to find an optimal route for our tractors. They all start from a specific barn, and can visit only a given number of fields before going back to the barn for reloading. Again we have a nice tools to do that, **Optapy**!
+
+* In your project in JupyterLab, open the notebook `05_tractor-routing.ipynb` and follow the instructions. The configuration of Optapy is a little bit more complex. But the different section will give you an idea on how to work with it.
+
+image::optapy_resolution.png[]
+
+We now have all the elements we need to build and deploy an intelligent application and deploy it on OpenShift. Let's go to the next section to have some fun with drones and tractors!

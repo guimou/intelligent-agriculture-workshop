@@ -1,0 +1,137 @@
+= 6. Building and deploying an intelligent application - 10 minutes
+:imagesdir: ../assets/images
+
+The application we are going to deploy will use all the different tools we have seen so far:
+
+* Model serving with RHODS to detect crops that need treatment
+* PathFinder to find our way on the map
+* Route optimization with Optapy
+
+We will use a front end developed with https://gdevelop.io/[GDevelop^], an open source tool originally meant to create games, but perfect to see our drones and tractors moving in real time.
+
+== 6.1. Architecture
+
+++++
+<style>
+.mermaid {
+  width: 100%;
+}
+</style>
+++++
+[mermaid]
+....
+sequenceDiagram
+    participant drone as Drone
+    participant classification as Classification API
+    participant model as Model Serving API
+    participant tractor as Tractor
+    participant path as Path Services API
+
+    rect rgb(255,255,255)
+    note right of drone: Image classification
+        drone ->> classification: Status of this field? (/classify)
+        classification ->> model: Prediction for this field? (/prediction)
+        note over model: Make prediction and score
+        model ->> classification: Here are the results
+        alt Field must be treated
+            classification ->> path: Add this field to destinations (/destination)
+        end
+        classification ->> drone: Update field according to status
+    end
+
+    rect rgb(255,255,255)
+    note right of tractor: Tractor route computation (multiple destinations)
+        loop Every 10s if tractor Route is empty
+            tractor ->> path: Fields to treat? (/routefinder)
+        end
+        alt Destinations is empty
+            path ->> tractor: No, you're clear
+        else Destinations has entries
+            note over path: Find best route within tractor capacity
+            path ->> tractor: Yes, here is your full route
+        end
+    end
+    
+
+    rect rgb(255,255,255)
+    note right of tractor: Tractor movement
+        tractor ->> path: What's the path to go there? (/pathfinder)
+        path ->> tractor: Here is the path to follow
+        tractor ->> path: I have treated this field
+        note over path: Remove field from destinations
+        path ->> tractor: Ack, go to next destination
+    end
+....
+
+The different components are:
+
+* The Frontend: our JavaScript application made with GDevelop.
+* A Backend called "Classification" that serves the Frontend and interact with the other components server side.
+* A "PathService" containerized as an API that keeps track of the fields to visit and calculate the optimal routes on request.
+* The Model Serving API to identify the fields to visit.
+
+The code for all of those different elements is available in the `classification`, `pathservice` and `ui` folders in the project. Of course you can take a few minutes to look at them.
+
+NOTE: for the UI code you will have to install GDevelop or you use the online version.
+
+== 6.2. Deploy the application
+
+The deployment of the application is really easy, as we already created for you the necessary YAML files. They are included in the Git project we used for this workshop. You can find them **in the `workshop/deployment` folder inside you Jupyter environment**, or directly https://github.com/rh-aiservices-bu/intelligent-agriculture-demo/blob/main/workshop/deployment/intelligent-agriculture-deployment.yaml[here^]. 
+
+To deploy the application:
+
+* Open the YAML file `intelligent-agriculture-deployment.yaml` in the `workshop/deployment` folder.
+
+* On line 33, replace the placeholder `replace_me` with `https://ia-pathservice-%USERID%.%SUBDOMAIN%`
+* On line 35, replace the placeholder `replace_me` with `https://ia-classification-%USERID%.%SUBDOMAIN%`
+
+WARNING: Those two addresses must be entered exactly as displayed, without a trailing `/` (if you right-click to copy the URL and then paste it, a `/` will be added at the end, you must remove it).
+
+* Select and copy the whole content of this file to the clipboard (CTRL+C)
+* Open the https://console-openshift-console.%SUBDOMAIN%/k8s/cluster/projects/%USERID%[OpenShift Console^]. Use your workshop username and password when asked. You should be in your project, **%USERID%**.
+* Select the "Import YAML" button, the "plus" sign on the top right:
+
+image::import_yaml.png[]
+
+* Paste the content of the file `intelligent-agriculture-deployment.yaml` inside the Window (CTRL+V). You can then select `Create`:
+
+image::create_application.png[]
+
+* The different deployment, services and routes are now created.
+
+image::application_deployed.png[]
+
+== 6.3. Use the application
+
+The application is relatively straightforward to use. It is accessible at: https://ia-classification-%USERID%.%SUBDOMAIN%/[https://ia-classification-%USERID%.%SUBDOMAIN%/^]
+
+Once loaded, click on the Play button at the bottom left of the screen. The drone will start its survey!
+
+image::play.png[]
+
+Periodically, the tractors will contact the different services running on OpenShift to get their Routes. And will then proceed to the different fields.
+
+You can also interact directly with the map:
+
+* If you click on a field, its information are displayed on the lower section of the right bar:
+
+image::crop_info.png[]
+
+* If you click on the **Toggle State** button, you can switch its state to healthy or a random illness:
+
+image::crop_toggle.png[]
+
+== 6.4. Tweak the application (Optional)
+
+If you know your way around OpenShift, there are different parameters you can change in the `ia-classification` Deployment:
+
+image::tweak.png[]
+
+* DRONE_SPEED: the speed of the drone
+* TRACTOR_SPEED: the speed of the tractors
+* COMM_SPEED: the speed of the communication beams
+* WEALTHY_CROP_INITIAL_PERCENTAGE: the initial ration of wealthy crops
+
+
+
+
