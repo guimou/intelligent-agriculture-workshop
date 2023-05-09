@@ -35,11 +35,11 @@ image::add_data_connection.png[]
 
 * Fill in the information, the select **Add data connection**:
     ** Name it `Crops`
-    ** `AWS_ACCESS_KEY_ID` is `odsceast`.
-    ** `AWS_SECRET_ACCESS_KEY` is `odsceast`.
-    ** `AWS_S3_ENDPOINT` is `http://s3.redhat-ods-applications.svc.cluster.local:9000`.
-    ** `AWS_DEFAULT_REGION` is `us-east-1` (default).
-    ** `AWS_S3_BUCKET` is `models`.
+    ** `AWS_ACCESS_KEY_ID` is `odsceast`
+    ** `AWS_SECRET_ACCESS_KEY` is `odsceast`
+    ** `AWS_S3_ENDPOINT` is `http://s3.redhat-ods-applications.svc.cluster.local:9000`
+    ** `AWS_DEFAULT_REGION` is `us-east-1` (default)
+    ** `AWS_S3_BUCKET` is `models`
 
 No need to specify any connected workbench, this data connection will only be used by the model server.
 
@@ -65,9 +65,9 @@ image::model_server_available.png[]
 
 image::deploy_model_configuration.png[]
 
-NOTE: It's very important to respect the naming of the model here, `crops`. Otherwise some files won't work later on.
+IMPORTANT: It's very important to respect the naming of the model here, `crops`. Otherwise some files won't work later on.
 
-* The model is now deploying. You may have click on the `1` on the `Deployed models` tab to see details:
+* The model is now deploying. You may have to click on the `1` on the `Deployed models` tab to see the details:
 
 image::deployed_models.png[]
 

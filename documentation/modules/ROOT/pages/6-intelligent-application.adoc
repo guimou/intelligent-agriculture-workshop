@@ -72,7 +72,7 @@ The different components are:
 
 The code for all of those different elements is available in the `classification`, `pathservice` and `ui` folders in the project. Of course you can take a few minutes to look at them.
 
-NOTE: for the UI code you will have to install GDevelop or you use the online version.
+NOTE: for the UI code you will have to install GDevelop or you can use the online version.
 
 == 6.2. Deploy the application
 
@@ -103,7 +103,7 @@ image::application_deployed.png[]
 
 == 6.3. Use the application
 
-The application is relatively straightforward to use. It is accessible at: https://ia-classification-%USERID%.%SUBDOMAIN%/[https://ia-classification-%USERID%.%SUBDOMAIN%/^]
+The application is relatively straightforward to use. After a few seconds to deploy, it is accessible at: https://ia-classification-%USERID%.%SUBDOMAIN%/[https://ia-classification-%USERID%.%SUBDOMAIN%/^]
 
 Once loaded, click on the Play button at the bottom left of the screen. The drone will start its survey!
 

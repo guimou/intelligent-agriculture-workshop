@@ -13,7 +13,7 @@ OpenShift Data Science has already been deployed in the workshop environment.
 
 To get started, access https://rhods-dashboard-redhat-ods-applications.%SUBDOMAIN%[RHODS web console^]
 
-Login with the following credential:
+Login with the credentials you have been assigned:
 
  * *Username*: `%USERID%`
  * *Password*: `{openshift-password}`

@@ -19,9 +19,9 @@ image::pathfinder.png[]
 
 == 5.2 Routing optimization
 
-Now that we can properly calculate the real distance between two points on our map, we need a way to find an optimal route for our tractors. They all start from a specific barn, and can visit only a given number of fields before going back to the barn for reloading. Again we have a nice tools to do that, **Optapy**!
+Now that we can properly calculate the real distance between two points on our map, we need a way to find an optimal route for our tractors. They all start from a specific barn, and can visit only a given number of fields before going back to the barn for reloading. Again we have a nice tool to do that, **Optapy**!
 
-* In your project in JupyterLab, open the notebook `05_tractor-routing.ipynb` and follow the instructions. The configuration of Optapy is a little bit more complex. But the different section will give you an idea on how to work with it.
+* In your project in JupyterLab, open the notebook `05_tractor-routing.ipynb` and follow the instructions. The configuration of Optapy is a little bit more complex. But the different sections will give you an idea on how to work with it.
 
 image::optapy_resolution.png[]
 

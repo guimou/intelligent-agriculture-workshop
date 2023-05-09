@@ -13,7 +13,7 @@ image::create_dsp.png[]
 
 * Type the following values in the popup window, then click on `Create`.
 
-**IMPORTANT**: Please enter them as described, as it is what will allow us to identify your resources and help you in case of problem (Description can be what you want though).
+IMPORTANT: Enter the values as written, as it is what will allow us to identify your resources and help you in case of problem (Description can be what you want though).
 
 * *Name*: `%USERID%`
 * *Resource name*: `%USERID%`
@@ -72,7 +72,7 @@ image::git.png[]
 
 image::git_clone.png[]
 
-* Enter the URL https://github.com/rh-aiservices-bu/intelligent-agriculture-demo.git, then select `CLONE`:
+* Enter the URL `https://github.com/rh-aiservices-bu/intelligent-agriculture-demo.git`, then click on `Clone`:
 
 image::clone_repo.png[]
 
